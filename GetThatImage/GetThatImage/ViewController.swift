@@ -11,6 +11,13 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        NetworkingManager.api.send(request: .getImageList(completion: { (result) in
+            switch result {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print("failed to get images \(error.localizedDescription)")
+            }
+        }))
     }
 }

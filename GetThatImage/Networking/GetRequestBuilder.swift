@@ -10,7 +10,7 @@ import Foundation
 struct GetRequestBuilder: RequestBuilder {
     var method: HTTPMethod
     var baseURL: URL
-    var path: String
+    var path: String?
     var params: [URLQueryItem]?
     var headers: [String: String] = [:]
 }

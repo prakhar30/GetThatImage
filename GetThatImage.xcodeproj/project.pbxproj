@@ -22,6 +22,9 @@
 		95F6066325F3C507006DB068 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F6066225F3C507006DB068 /* APIError.swift */; };
 		95F6066825F3C51C006DB068 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F6066725F3C51C006DB068 /* HTTPMethod.swift */; };
 		95F6066D25F3C6B7006DB068 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F6066C25F3C6B7006DB068 /* APIKey.swift */; };
+		95F6067225F3C7D3006DB068 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F6067125F3C7D3006DB068 /* Model.swift */; };
+		95F6067725F3C7F1006DB068 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F6067625F3C7F1006DB068 /* Result.swift */; };
+		95F6067C25F3C829006DB068 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F6067B25F3C829006DB068 /* ResultModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		95F6066225F3C507006DB068 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		95F6066725F3C51C006DB068 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		95F6066C25F3C6B7006DB068 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		95F6067125F3C7D3006DB068 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		95F6067625F3C7F1006DB068 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		95F6067B25F3C829006DB068 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +159,9 @@
 				95F6066225F3C507006DB068 /* APIError.swift */,
 				95F6066725F3C51C006DB068 /* HTTPMethod.swift */,
 				95F6066C25F3C6B7006DB068 /* APIKey.swift */,
+				95F6067125F3C7D3006DB068 /* Model.swift */,
+				95F6067625F3C7F1006DB068 /* Result.swift */,
+				95F6067B25F3C829006DB068 /* ResultModel.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -293,8 +302,11 @@
 				95F6065E25F3C464006DB068 /* GetRequestBuilder.swift in Sources */,
 				95F6066D25F3C6B7006DB068 /* APIKey.swift in Sources */,
 				95F6065925F3C450006DB068 /* RequestBuilder.swift in Sources */,
+				95F6067725F3C7F1006DB068 /* Result.swift in Sources */,
 				95F6066825F3C51C006DB068 /* HTTPMethod.swift in Sources */,
 				95F6066325F3C507006DB068 /* APIError.swift in Sources */,
+				95F6067225F3C7D3006DB068 /* Model.swift in Sources */,
+				95F6067C25F3C829006DB068 /* ResultModel.swift in Sources */,
 				95E07A5E25F3B8BE00DBFB44 /* AppDelegate.swift in Sources */,
 				95F6064F25F3C3F3006DB068 /* APIClient.swift in Sources */,
 			);
