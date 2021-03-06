@@ -27,7 +27,6 @@ struct APICLient {
             let task = self.session.dataTask(with: urlRequest) { data, response, error in
                 let result: Result<Data, APIError>
                 
-                print("data", data?.prettyPrintedJSONString)
                 if let error = error {
                     result = .failure(.networkError(error))
                 } else if let apiError = APIError.error(response: response) {

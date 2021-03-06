@@ -11,6 +11,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getImageList()
+    }
+    
+    func getImageList() {
         NetworkingManager.api.send(request: .getImageList(completion: { (result) in
             switch result {
             case .success(let response):

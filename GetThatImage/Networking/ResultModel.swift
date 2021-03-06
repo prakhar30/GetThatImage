@@ -10,7 +10,7 @@ import Foundation
 struct ResultModel<T: Model>: Model {
     var total: Int?
     var totalHits: Int?
-    var hits: T?
+    var hits: [T?]
 }
 
 struct HitsModel: Model {
