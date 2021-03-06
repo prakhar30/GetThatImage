@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     }
     
     func getImageList() {
-        NetworkingManager.api.send(request: .getImageList(completion: { (result) in
+        NetworkingManager.api.send(request: .getImageList(page: 1, completion: { (result) in
             switch result {
             case .success(let response):
                 print(response)
