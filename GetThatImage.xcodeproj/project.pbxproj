@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		51EB6F6E2CF8540CA1A74819 /* Pods_GetThatImage_GetThatImageUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D0B37B6F69B7D03B2B8573D /* Pods_GetThatImage_GetThatImageUITests.framework */; };
 		6A7BA2270F5B9F7A5F19BEBD /* Pods_GetThatImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B224D5BB034FD374103E7B4D /* Pods_GetThatImage.framework */; };
+		950EEAA625F502CF0001F68C /* PendingOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950EEAA525F502CF0001F68C /* PendingOperations.swift */; };
+		950EEAAC25F502FE0001F68C /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950EEAAB25F502FE0001F68C /* ImageDownloader.swift */; };
 		95E07A5E25F3B8BE00DBFB44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E07A5D25F3B8BE00DBFB44 /* AppDelegate.swift */; };
 		95E07A6525F3B8BE00DBFB44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95E07A6325F3B8BE00DBFB44 /* Main.storyboard */; };
 		95E07A6725F3B8BE00DBFB44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95E07A6625F3B8BE00DBFB44 /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 		2484634D14ABF4FB21A52CB2 /* Pods-GetThatImage-GetThatImageUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetThatImage-GetThatImageUITests.debug.xcconfig"; path = "Target Support Files/Pods-GetThatImage-GetThatImageUITests/Pods-GetThatImage-GetThatImageUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4E7F4E956E0E7227C02794F4 /* Pods_GetThatImageTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetThatImageTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C74E71ED9D0913FC583FCB8 /* Pods-GetThatImage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetThatImage.debug.xcconfig"; path = "Target Support Files/Pods-GetThatImage/Pods-GetThatImage.debug.xcconfig"; sourceTree = "<group>"; };
+		950EEAA525F502CF0001F68C /* PendingOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOperations.swift; sourceTree = "<group>"; };
+		950EEAAB25F502FE0001F68C /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		95E07A5A25F3B8BE00DBFB44 /* GetThatImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetThatImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95E07A5D25F3B8BE00DBFB44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = GetThatImage/AppDelegate.swift; sourceTree = "<group>"; };
 		95E07A6425F3B8BE00DBFB44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -121,8 +125,31 @@
 				FDF798A0CE0FAF5016E53BC4 /* Pods-GetThatImageTests.debug.xcconfig */,
 				1F54B7DF4451E2F898C8971B /* Pods-GetThatImageTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		950EEAA325F502840001F68C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				95F6068025F3DE98006DB068 /* ImagesTableViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		950EEAA425F502B20001F68C /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				950EEAAB25F502FE0001F68C /* ImageDownloader.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		950EEAAA25F502EC0001F68C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				950EEAA525F502CF0001F68C /* PendingOperations.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		95E07A5125F3B8BE00DBFB44 = {
@@ -150,13 +177,15 @@
 		95E07A5C25F3B8BE00DBFB44 /* GetThatImage */ = {
 			isa = PBXGroup;
 			children = (
+				950EEAAA25F502EC0001F68C /* Helpers */,
+				950EEAA425F502B20001F68C /* Operations */,
+				950EEAA325F502840001F68C /* ViewControllers */,
 				95F6064825F3C39A006DB068 /* Networking */,
 				95E07A5D25F3B8BE00DBFB44 /* AppDelegate.swift */,
 				95E07A6325F3B8BE00DBFB44 /* Main.storyboard */,
 				95E07A6625F3B8BE00DBFB44 /* Assets.xcassets */,
 				95E07A6825F3B8BE00DBFB44 /* LaunchScreen.storyboard */,
 				95E07A6B25F3B8BE00DBFB44 /* Info.plist */,
-				95F6068025F3DE98006DB068 /* ImagesTableViewController.swift */,
 			);
 			path = GetThatImage;
 			sourceTree = "<group>";
@@ -446,8 +475,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				95F6064A25F3C3AB006DB068 /* NetworkingManager.swift in Sources */,
+				950EEAAC25F502FE0001F68C /* ImageDownloader.swift in Sources */,
 				95F6065425F3C41F006DB068 /* Request.swift in Sources */,
 				95F6065E25F3C464006DB068 /* GetRequestBuilder.swift in Sources */,
+				950EEAA625F502CF0001F68C /* PendingOperations.swift in Sources */,
 				95F6066D25F3C6B7006DB068 /* APIKey.swift in Sources */,
 				95F6068125F3DE98006DB068 /* ImagesTableViewController.swift in Sources */,
 				95F6065925F3C450006DB068 /* RequestBuilder.swift in Sources */,
