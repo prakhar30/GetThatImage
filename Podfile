@@ -6,7 +6,6 @@ target 'GetThatImage' do
   use_frameworks!
 
   # Pods for GetThatImage
-  pod 'Nuke', '9.3.0'
 
   target 'GetThatImageTests' do
     inherit! :search_paths

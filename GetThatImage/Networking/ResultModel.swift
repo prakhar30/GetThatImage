@@ -20,4 +20,7 @@ struct HitsModel: Model {
     var webformatHeight: Int?
     var views: Int?
     var downloads: Int?
+    var previewHeight: Int?
+    var previewWidth: Int?
+    var previewURL: String?
 }

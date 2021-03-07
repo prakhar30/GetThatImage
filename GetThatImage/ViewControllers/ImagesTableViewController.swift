@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Nuke
 
 class ImagesTableViewController: UITableViewController {
     var viewModel = ImagesTableViewModel()

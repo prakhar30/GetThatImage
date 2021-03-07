@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import Nuke
+
 protocol ImagesViewModelDelegate: class {
     func reloadTableView()
     func reloadTableViewRows(atIndexPaths: [IndexPath], withAnimation: UITableView.RowAnimation)
@@ -23,8 +23,8 @@ class ImagesTableViewModel {
             switch result {
             case .success(let response):
                 for hit in response.hits {
-                    if let url = URL(string: hit?.webformatURL ?? "") {
-                        self.photos.append(PhotoRecord(name: "\(hit?.id ?? 0)", url: url))
+                    if let previewURL = URL(string: hit?.previewURL ?? ""), let fullURL = URL(string: hit?.webformatURL ?? "") {
+                        self.photos.append(PhotoRecord(name: "\(hit?.id ?? 0)", previewURL: previewURL, webURL: fullURL))
                     }
                 }
                 DispatchQueue.main.async {
@@ -57,7 +57,7 @@ class ImagesTableViewModel {
         let photoDetails = self.photos[indexPath.row]
         
         cell.textLabel?.text = photoDetails.name
-        Nuke.loadImage(with: photoDetails.url, into: cell.imageView ?? UIImageView())
+        cell.imageView?.image = photoDetails.image
         
         switch (photoDetails.state) {
         case .failed:
@@ -123,7 +123,7 @@ class ImagesTableViewModel {
     func startDownload(for photoRecord: PhotoRecord, at indexPath: IndexPath) {
         guard self.pendingOperations.downloadsInProgress[indexPath] == nil else { return }
         
-        let downloader = ImageDownloader(photoRecord)
+        let downloader = PreviewImageDownloader(photoRecord)
         downloader.completionBlock = {
             if downloader.isCancelled { return }
             

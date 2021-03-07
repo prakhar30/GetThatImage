@@ -15,17 +15,19 @@ enum PhotoRecordState {
 
 class PhotoRecord {
     let name: String
-    let url: URL
+    let previewURL: URL
+    var webURL: URL
     var state = PhotoRecordState.new
     var image = UIImage(named: "Placeholder")
     
-    init(name: String, url: URL) {
+    init(name: String, previewURL: URL, webURL: URL) {
         self.name = name
-        self.url = url
+        self.previewURL = previewURL
+        self.webURL = webURL
     }
 }
 
-class ImageDownloader: Operation {
+class PreviewImageDownloader: Operation {
     let photoRecord: PhotoRecord
     
     init(_ photoRecord: PhotoRecord) {
@@ -35,7 +37,7 @@ class ImageDownloader: Operation {
     override func main() {
         if isCancelled { return }
         
-        guard let imageData = try? Data(contentsOf: photoRecord.url) else { return }
+        guard let imageData = try? Data(contentsOf: photoRecord.previewURL) else { return }
         
         if isCancelled { return }
         
