@@ -11,6 +11,7 @@
 		6A7BA2270F5B9F7A5F19BEBD /* Pods_GetThatImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B224D5BB034FD374103E7B4D /* Pods_GetThatImage.framework */; };
 		950EEAA625F502CF0001F68C /* PendingOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950EEAA525F502CF0001F68C /* PendingOperations.swift */; };
 		950EEAAC25F502FE0001F68C /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950EEAAB25F502FE0001F68C /* ImageDownloader.swift */; };
+		950EEAB825F508C70001F68C /* ImagesTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950EEAB725F508C70001F68C /* ImagesTableViewModel.swift */; };
 		95E07A5E25F3B8BE00DBFB44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E07A5D25F3B8BE00DBFB44 /* AppDelegate.swift */; };
 		95E07A6525F3B8BE00DBFB44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95E07A6325F3B8BE00DBFB44 /* Main.storyboard */; };
 		95E07A6725F3B8BE00DBFB44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95E07A6625F3B8BE00DBFB44 /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		8C74E71ED9D0913FC583FCB8 /* Pods-GetThatImage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetThatImage.debug.xcconfig"; path = "Target Support Files/Pods-GetThatImage/Pods-GetThatImage.debug.xcconfig"; sourceTree = "<group>"; };
 		950EEAA525F502CF0001F68C /* PendingOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOperations.swift; sourceTree = "<group>"; };
 		950EEAAB25F502FE0001F68C /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		950EEAB725F508C70001F68C /* ImagesTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesTableViewModel.swift; sourceTree = "<group>"; };
 		95E07A5A25F3B8BE00DBFB44 /* GetThatImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetThatImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95E07A5D25F3B8BE00DBFB44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = GetThatImage/AppDelegate.swift; sourceTree = "<group>"; };
 		95E07A6425F3B8BE00DBFB44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -152,6 +154,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		950EEAB625F508A80001F68C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				950EEAB725F508C70001F68C /* ImagesTableViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		95E07A5125F3B8BE00DBFB44 = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +190,7 @@
 				950EEAAA25F502EC0001F68C /* Helpers */,
 				950EEAA425F502B20001F68C /* Operations */,
 				950EEAA325F502840001F68C /* ViewControllers */,
+				950EEAB625F508A80001F68C /* ViewModels */,
 				95F6064825F3C39A006DB068 /* Networking */,
 				95E07A5D25F3B8BE00DBFB44 /* AppDelegate.swift */,
 				95E07A6325F3B8BE00DBFB44 /* Main.storyboard */,
@@ -489,6 +500,7 @@
 				95F6067C25F3C829006DB068 /* ResultModel.swift in Sources */,
 				95E07A5E25F3B8BE00DBFB44 /* AppDelegate.swift in Sources */,
 				95F6064F25F3C3F3006DB068 /* APIClient.swift in Sources */,
+				950EEAB825F508C70001F68C /* ImagesTableViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
