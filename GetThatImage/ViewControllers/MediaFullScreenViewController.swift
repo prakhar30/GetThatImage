@@ -14,6 +14,10 @@ class MediaFullScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadImage()
+    }
+    
+    func loadImage() {
         DispatchQueue.global(qos: .userInitiated).async {
             if let imageURL = self.imageURL {
                 guard let imageData = try? Data(contentsOf: imageURL) else { return }
