@@ -8,6 +8,8 @@
 import UIKit
 
 class ImagesTableViewController: UITableViewController {
+    
+    let searchController = UISearchController(searchResultsController: nil)
     var viewModel = ImagesTableViewModel()
     
     override func viewDidLoad() {
@@ -15,8 +17,20 @@ class ImagesTableViewController: UITableViewController {
         self.title = "Photos"
         self.tableView.prefetchDataSource = self
         self.tableView.estimatedRowHeight = 80.0
+        self.setupSearchBar()
         viewModel.delegate = self
         viewModel.getImageList()
+    }
+    
+    func setupSearchBar() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Images"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
+        searchController.searchBar.scopeButtonTitles = []
+        searchController.searchBar.delegate = self
     }
     
     // MARK: - Table view data source
@@ -64,6 +78,17 @@ extension ImagesTableViewController: UITableViewDataSourcePrefetching {
     
     func isLoadingCell(for indexPath: IndexPath) -> Bool {
         return indexPath.row >= viewModel.photos.count
+    }
+}
+
+extension ImagesTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBarText = searchController.searchBar.text
+    }
+}
+
+extension ImagesTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
     }
 }
 
