@@ -12,7 +12,7 @@ class PendingOperations {
     lazy var downloadQueue: OperationQueue = {
         var queue = OperationQueue()
         queue.name = "com.prakhar.getThatImage.downloadQueue"
-        queue.maxConcurrentOperationCount = 1
+        queue.maxConcurrentOperationCount = 5
         return queue
     }()
 }

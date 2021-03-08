@@ -11,34 +11,60 @@ import UIKit
 protocol ImagesViewModelDelegate: class {
     func reloadTableView()
     func reloadTableViewRows(atIndexPaths: [IndexPath], withAnimation: UITableView.RowAnimation)
+    func onFetchCompleted(newIndexPathsToReload: [IndexPath]?)
 }
 
 class ImagesTableViewModel {
+    private var isFetchInProgress = false
     var photos: [PhotoRecord] = []
     let pendingOperations = PendingOperations()
+    var currentPage = 1
+    var total = 0
     weak var delegate: ImagesViewModelDelegate?
     
     func getImageList() {
-        NetworkingManager.api.send(request: .getImageList(page: 1, completion: { (result) in
+        guard !isFetchInProgress else { return }
+        isFetchInProgress = true
+        
+        NetworkingManager.api.send(request: .getImageList(page: currentPage, completion: { (result) in
             switch result {
             case .success(let response):
+                self.total = response.totalHits ?? 0
+                var tempPhotos: [PhotoRecord] = []
                 for hit in response.hits {
                     if let previewURL = URL(string: hit?.previewURL ?? ""), let fullURL = URL(string: hit?.webformatURL ?? "") {
-                        self.photos.append(PhotoRecord(name: "\(hit?.id ?? 0)", previewURL: previewURL, webURL: fullURL))
+                        tempPhotos.append(PhotoRecord(name: "\(hit?.id ?? 0)", previewURL: previewURL, webURL: fullURL))
                     }
                 }
+                self.photos.append(contentsOf: tempPhotos)
                 DispatchQueue.main.async {
-                    self.delegate?.reloadTableView()
+                    if self.currentPage > 1 {
+                        // reload only the news rows added as a result of fetching the new page
+                        let indexPathsToReload = self.calculateIndexPathsToReload(newPhotos: tempPhotos)
+                        self.delegate?.onFetchCompleted(newIndexPathsToReload: indexPathsToReload)
+                    } else {
+                        // normally reload tableview as this is the first page fetched.
+                        self.delegate?.reloadTableView()
+                    }
+                    self.currentPage += 1
+                    self.isFetchInProgress = false
                 }
             case .failure(let error):
+                self.isFetchInProgress = false
                 print("failed to get images \(error.localizedDescription)")
             }
         }))
     }
     
+    func calculateIndexPathsToReload(newPhotos: [PhotoRecord]) -> [IndexPath] {
+        let startIndex = self.photos.count - newPhotos.count
+        let endIndex = startIndex + newPhotos.count
+        return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
+    }
+    
     // MARK: TableView Data Source Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.photos.count
+        return self.total
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -58,6 +84,8 @@ class ImagesTableViewModel {
         
         cell.textLabel?.text = photoDetails.name
         cell.imageView?.image = photoDetails.image
+        cell.imageView?.frame = CGRect(x: 0.0, y: 0.0, width: 80.0, height: 80.0)
+        cell.imageView?.contentMode = .scaleAspectFit
         
         switch (photoDetails.state) {
         case .failed:

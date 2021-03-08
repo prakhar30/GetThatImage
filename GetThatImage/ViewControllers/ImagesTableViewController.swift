@@ -13,6 +13,8 @@ class ImagesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Photos"
+        self.tableView.prefetchDataSource = self
+        self.tableView.estimatedRowHeight = 80.0
         viewModel.delegate = self
         viewModel.getImageList()
     }
@@ -48,6 +50,18 @@ class ImagesTableViewController: UITableViewController {
     }    
 }
 
+extension ImagesTableViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        if indexPaths.contains(where: isLoadingCell) {
+            viewModel.getImageList()
+        }
+    }
+    
+    func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        return indexPath.row >= viewModel.photos.count
+    }
+}
+
 extension ImagesTableViewController: ImagesViewModelDelegate {
     func reloadTableView() {
         self.tableView.reloadData()
@@ -55,5 +69,18 @@ extension ImagesTableViewController: ImagesViewModelDelegate {
     
     func reloadTableViewRows(atIndexPaths: [IndexPath], withAnimation: UITableView.RowAnimation) {
         self.tableView.reloadRows(at: atIndexPaths, with: withAnimation)
+    }
+    
+    func onFetchCompleted(newIndexPathsToReload: [IndexPath]?) {
+        guard let newIndexPathsToReload = newIndexPathsToReload else { return }
+        
+        let indexPathsToReload = visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
+        tableView.reloadRows(at: indexPathsToReload, with: .automatic)
+    }
+    
+    func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
+        let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows ?? []
+        let indexPathsIntersection = Set(indexPathsForVisibleRows).intersection(indexPaths)
+        return Array(indexPathsIntersection)
     }
 }
