@@ -32,6 +32,11 @@ class ImagesTableViewController: UITableViewController {
         self.viewModel.tableView(tableView, cellForRowAt: indexPath)
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let fullScreenVC = self.viewModel.getFullScreenVC(at: indexPath)
+        self.navigationController?.pushViewController(fullScreenVC, animated: true)
+    }
+    
     // MARK: - Scrollview delegate methods
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.viewModel.suspendAllOperations()

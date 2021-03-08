@@ -62,6 +62,13 @@ class ImagesTableViewModel {
         return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
     }
     
+    func getFullScreenVC(at indexPath: IndexPath) -> MediaFullScreenViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MediaFullScreenViewController_ID") as! MediaFullScreenViewController
+        vc.imageURL = photos[indexPath.row].webURL
+        return vc
+    }
+    
     // MARK: TableView Data Source Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.total

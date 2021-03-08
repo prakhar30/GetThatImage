@@ -42,7 +42,7 @@ class PreviewImageDownloader: Operation {
         if isCancelled { return }
         
         if !imageData.isEmpty {
-            photoRecord.image = UIImage(data:imageData)
+            photoRecord.image = UIImage(data: imageData)
             photoRecord.state = .downloaded
         } else {
             photoRecord.state = .failed
