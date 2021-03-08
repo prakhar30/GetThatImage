@@ -29,6 +29,7 @@ class ImagesTableViewController: UITableViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
+        // TODO: Add history of searches to these scopeButtonTitles and then handle their selection in selectedScopeButtonIndexDidChange
         searchController.searchBar.scopeButtonTitles = []
         searchController.searchBar.delegate = self
     }
@@ -84,11 +85,17 @@ extension ImagesTableViewController: UITableViewDataSourcePrefetching {
 extension ImagesTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBarText = searchController.searchBar.text
+        if let searchText = searchBarText, searchText != "" {
+            print("searching", searchText)
+        } else {
+            print("default should be displayed")
+        }
     }
 }
 
 extension ImagesTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        // TODO: handle selection of the history of searches
     }
 }
 
