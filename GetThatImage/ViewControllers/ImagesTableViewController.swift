@@ -11,6 +11,7 @@ class ImagesTableViewController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     var viewModel = ImagesTableViewModel()
+    var searchTask: DispatchWorkItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,7 @@ class ImagesTableViewController: UITableViewController {
         self.tableView.estimatedRowHeight = 80.0
         self.setupSearchBar()
         viewModel.delegate = self
-        viewModel.getImageList()
+        viewModel.getImageList(searchKey: nil)
     }
     
     func setupSearchBar() {
@@ -73,7 +74,7 @@ class ImagesTableViewController: UITableViewController {
 extension ImagesTableViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         if indexPaths.contains(where: isLoadingCell) {
-            viewModel.getImageList()
+            viewModel.getImageList(searchKey: nil)
         }
     }
     
@@ -84,12 +85,18 @@ extension ImagesTableViewController: UITableViewDataSourcePrefetching {
 
 extension ImagesTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        let searchBarText = searchController.searchBar.text
-        if let searchText = searchBarText, searchText != "" {
-            print("searching", searchText)
-        } else {
-            print("default should be displayed")
+        self.searchTask?.cancel()
+        // Replace previous task with a new one
+        let task = DispatchWorkItem { [weak self] in
+            let searchBarText = searchController.searchBar.text
+            if let searchText = searchBarText, searchText != "" {
+                print("searching", searchText)
+            } else {
+                print("default should be displayed")
+            }
         }
+        self.searchTask = task
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.00, execute: task)
     }
 }
 

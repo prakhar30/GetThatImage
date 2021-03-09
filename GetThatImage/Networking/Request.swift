@@ -26,19 +26,22 @@ struct Request {
         return Request(builder: builder, completion: completion)
     }
     
-    static func getParams(page: Int) -> [URLQueryItem] {
+    static func getParams(page: Int, searchKey: String?) -> [URLQueryItem] {
         var params = [URLQueryItem]()
         params.append(URLQueryItem(name: "key", value: APIKey.key))
         params.append(URLQueryItem(name: "image_type", value: "photo"))
         params.append(URLQueryItem(name: "per_page", value: "20"))
         params.append(URLQueryItem(name: "page", value: "\(page)"))
+        if let text = searchKey {
+            params.append(URLQueryItem(name: "q", value: text))
+        }
         return params
     }
 }
 
 extension Request {
-    static func getImageList(page: Int, completion: ((Result<ResultModel<HitsModel>, APIError>) -> Void)?) -> Request {
-        Request.get(baseURL: NetworkingManager.baseURL, params: getParams(page: page), headers: [:]) { (result) in
+    static func getImageList(page: Int, searchKey: String?, completion: ((Result<ResultModel<HitsModel>, APIError>) -> Void)?) -> Request {
+        Request.get(baseURL: NetworkingManager.baseURL, params: getParams(page: page, searchKey: searchKey), headers: [:]) { (result) in
             result.decoding(ResultModel<HitsModel>.self, completion: completion)
         }
     }

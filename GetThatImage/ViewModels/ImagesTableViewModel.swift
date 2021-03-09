@@ -22,11 +22,11 @@ class ImagesTableViewModel {
     var total = 0
     weak var delegate: ImagesViewModelDelegate?
     
-    func getImageList() {
+    func getImageList(searchKey: String?) {
         guard !isFetchInProgress else { return }
         isFetchInProgress = true
         
-        NetworkingManager.api.send(request: .getImageList(page: currentPage, completion: { (result) in
+        NetworkingManager.api.send(request: .getImageList(page: currentPage, searchKey: searchKey, completion: { (result) in
             switch result {
             case .success(let response):
                 self.total = response.totalHits ?? 0
